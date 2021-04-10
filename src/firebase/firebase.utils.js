@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import "firebase/firestore"; //importing firestore db
+import "firebase/auth";  //importing authentication
 
 const config = {
   apiKey: "AIzaSyBw85mnvtzocAy97XSMhxNsI5Iw1b5sgWY",
@@ -12,6 +12,34 @@ const config = {
   measurementId: "G-CNXEZQB624",
 };
 
+//getting uid in firestoredb from google auth
+export const createUserProfileDocument=async (userAuth,additionalData)=> {
+  if(!userAuth) return; //if user not signed in then exit
+  
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot=await userRef.get()
+  //exists shows if the snapshot of the user that signed in already exists in the db or not.
+
+  if(!snapShot.exists){    //if user already in db skip else run
+    const {displayName,email}=userAuth;
+    const createdAt=new Date();
+
+    try{
+      await userRef.set({
+        displayName,email,createdAt,...additionalData
+      })
+    }
+    catch(error){
+      console.error('Error Creating Error',error.message);
+    }
+
+  }
+  return userRef;
+}
+
+
+// basic firestore and googleauth setup
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
