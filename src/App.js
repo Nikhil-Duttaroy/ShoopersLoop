@@ -8,6 +8,11 @@ import Header from "./components/Header/Header.components.jsx";
 import HomePage from "./pages/HomePage/HomePage.components.jsx";
 import ShopPage from "./pages/Shop/ShopPage.components.jsx";
 import SignInAndSignUp from "./pages/SignInAndSignUp/SignInAndSignUp.components";
+import CheckoutPage from "./pages/Checkout/Checkout.components";
+
+
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../src/redux/user/user.selector"
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from './redux/user/user.actions';
@@ -63,16 +68,27 @@ class App extends React.Component {
         {/* currentUser={this.state.currentUser}  this is removed from header after using redux */}
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route exact  path='/signin'   render={()=>this.props.currentUser ? (<Redirect to='/'/>) : (<SignInAndSignUp/>)  } />
+          <Route  path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
+          <Route
+            exact
+            path='/signin'
+            render={() =>
+              this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+            }
+          />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser, //state.user.currentUser  ----> Root reducer [user] =>userReducer[currentUser]
+// const mapStateToProps = ({ user }) => ({
+//   currentUser: user.currentUser, //state.user.currentUser  ----> Root reducer [user] =>userReducer[currentUser]
+// });
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch=>({
