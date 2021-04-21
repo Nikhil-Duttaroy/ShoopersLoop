@@ -13,7 +13,7 @@ const CollectionPage = ({ collection }) => {
   
   
   const { title, items } = collection;
-  console.log(collection);
+  // console.log(collection);
 
   return (
     <div className='collection-page'>
