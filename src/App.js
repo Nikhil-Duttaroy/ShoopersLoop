@@ -28,7 +28,9 @@ class App extends React.Component {
   // }
 
   unsubscribeFromAuth = null;
+  
   componentDidMount() {
+    
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -48,7 +50,6 @@ class App extends React.Component {
             id: snapShot.id,
             ...snapShot.data(),
           });
-
         });
       } else {
         // this.setState({ currentUser: userAuth });
@@ -68,7 +69,7 @@ class App extends React.Component {
         {/* currentUser={this.state.currentUser}  this is removed from header after using redux */}
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route   path='/shop' component={ShopPage} />
+          <Route path='/shop' component={ShopPage} />
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route
             exact
