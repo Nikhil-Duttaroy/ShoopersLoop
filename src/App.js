@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, Switch,Redirect } from "react-router-dom";
-import {connect} from 'react-redux'
-
+import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./App.css";
 import Header from "./components/Header/Header.components.jsx";
@@ -10,12 +9,16 @@ import ShopPage from "./pages/Shop/ShopPage.components.jsx";
 import SignInAndSignUp from "./pages/SignInAndSignUp/SignInAndSignUp.components";
 import CheckoutPage from "./pages/Checkout/Checkout.components";
 
-
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "../src/redux/user/user.selector"
+import { selectCurrentUser } from "../src/redux/user/user.selector";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from './redux/user/user.actions';
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+} from "./firebase/firebase.utils";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { SelectCollectionForPreview } from "./redux/shop/shop.selector";
 
 class App extends React.Component {
   //** As redux is Used
@@ -28,9 +31,10 @@ class App extends React.Component {
   // }
 
   unsubscribeFromAuth = null;
-  
+
   componentDidMount() {
-    
+    const { collectionsArray } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -54,6 +58,10 @@ class App extends React.Component {
       } else {
         // this.setState({ currentUser: userAuth });
         this.props.setCurrentUser(userAuth);
+        addCollectionAndDocuments(
+          "collections",
+          collectionsArray.map(({ title, items }) => ({ title, items }))
+        );
       }
     });
   }
@@ -90,10 +98,11 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collectionsArray: SelectCollectionForPreview,
 });
 
-const mapDispatchToProps = dispatch=>({
-  setCurrentUser:user=>dispatch(setCurrentUser(user))
-})
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
