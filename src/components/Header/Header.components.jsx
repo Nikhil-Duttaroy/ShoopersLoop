@@ -1,8 +1,8 @@
 import { React } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./Header.styles.scss";
+// import "./Header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../CartIcon/CartIcon.components.jsx";
 import CartDropdown from "./../CartDropdown/CartDropdown.component";
@@ -14,39 +14,41 @@ import { selectCurrentUser } from "./../../redux/user/user.selector";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
+//Styled Components import
+import {HeaderContainer,LogoContainer,OptionsContainer,OptionLink,OptionDiv,} from "./Header.styles"
 
 const Header = ({ currentUser ,hidden}) => (
-  <div className='header'>
-    <Link className='logo-container' to='/'>
+  <HeaderContainer >
+    <LogoContainer  to='/'>
       <Logo className='logo' />
-    </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>
+    </LogoContainer>
+    <OptionsContainer >
+      <OptionLink  to='/shop'>
         SHOP
-      </Link>
-      <Link className='option' to='/contact'>
+      </OptionLink>
+      <OptionLink  to='/contact'>
         CONTACT
-      </Link>
+      </OptionLink>
       {currentUser ? (
-        <div className='option' onClick={() => auth.signOut()}>
+        <OptionDiv  onClick={() => auth.signOut()}>
           {" "}
           SIGN OUT
-        </div>
+        </OptionDiv>
       ) : (
-        <Link className='option' to='/signin'>
+        <OptionLink  to='/signin'>
           SIGNIN
-        </Link>
+        </OptionLink>
       )}
       <CartIcon />
       
-    </div>
+    </OptionsContainer>
    { hidden ? null : <CartDropdown/>}
-  </div>
+  </HeaderContainer>
 );
 
 //*removed as using reselect library
 // const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) => ({
-//   // currentUser: state.user.currentUser, //state.user.currentUser  ----> Root reducer [user] =>userReducer[currentUser]
+// currentUser: state.user.currentUser, //state.user.currentUser  ----> Root reducer [user] =>userReducer[currentUser]
 //   currentUser,
 //   hidden
 // });
