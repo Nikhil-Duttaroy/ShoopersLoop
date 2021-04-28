@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { CustomButtonContainer } from './CustomButton.styles';
 
 // import './CustomButton.styles.scss'
