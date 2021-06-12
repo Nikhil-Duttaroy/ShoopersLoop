@@ -1,12 +1,11 @@
 import ShopActionTypes from "./shop.types";
-import {
-  firestore,
-  convertCollectionsSnapshotToMap,
-} from "../../firebase/firebase.utils";
+// import {
+//   firestore,
+//   convertCollectionsSnapshotToMap,
+// } from "../../firebase/firebase.utils";
 
 export const fetchCollectionsStart = () => ({
-  type: ShopActionTypes.FETCH_COLLECTIONS_START,
-  
+  type: ShopActionTypes.FETCH_COLLECTIONS_START, 
 });
 
 export const fetchCollectionsSuccess = collectionsMap => ({
@@ -19,19 +18,18 @@ export const fetchCollectionsFailure = (errorMessage) =>({
   payload : errorMessage
 })
 
+//*fetchCollectionsStartAsync is not used now bsc this was create for redux thunk bt we modified the code to work with sagas 
+// export const fetchCollectionsStartAsync = () => {
+//   return dispatch => {
+//     const collectionRef = firestore.collection("collections");
+//     dispatch(fetchCollectionsStart())
 
-export const fetchCollectionsStartAsync = () => {
-  return dispatch => {
-    const collectionRef = firestore.collection("collections");
-    dispatch(fetchCollectionsStart())
-
-    collectionRef
-      .get()
-      .then((snapshot) => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        dispatch(fetchCollectionsSuccess(collectionsMap));
-        // this.setState({ loading: false });
-      })
-      .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
-  }
-}
+//     collectionRef
+//       .get()
+//       .then((snapshot) => {
+//         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+//         dispatch(fetchCollectionsSuccess(collectionsMap));
+//       })
+//       .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
+//   }
+// }

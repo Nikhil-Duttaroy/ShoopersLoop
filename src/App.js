@@ -11,9 +11,8 @@ import CheckoutPage from "./pages/Checkout/Checkout.components";
 
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../src/redux/user/user.selector";
+import { checkUserSession } from "./redux/user/user.actions";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/user.actions";
 
 class App extends React.Component {
   //** As redux is Used
@@ -28,31 +27,22 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot((snapShot) => {
-          //** As redux is Used
-          // this.setState(
-          //   {
-          //     currentUser: {
-          //       id: snapShot.id,
-          //       ...snapShot.data(),
-          //     },
-          //   } //,()=> {console.log(this.state);}
-          // );
-          // console.log(this.state);
-
-          this.props.setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      } else {
-        // this.setState({ currentUser: userAuth });
-        this.props.setCurrentUser(userAuth);
-      }
-    });
+    const { checkUserSession } =this.props
+    checkUserSession();
+    // const {setCurrentUser} =this.props;
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     userRef.onSnapshot((snapShot) => {
+    //       this.props.setCurrentUser({
+    //         id: snapShot.id,
+    //         ...snapShot.data(),
+    //       });
+    //     });
+    //   } else {
+    //     this.props.setCurrentUser(userAuth);
+    //   }
+    // });
   }
 
   componentWillUnmount() {
@@ -63,7 +53,6 @@ class App extends React.Component {
     return (
       <div>
         <Header />{" "}
-        {/* currentUser={this.state.currentUser}  this is removed from header after using redux */}
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
@@ -90,7 +79,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
