@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -14,42 +14,11 @@ import { selectCurrentUser } from "../src/redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.actions";
 
 
-class App extends React.Component {
-  //** As redux is Used
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     currentUser: null,
-  //   };
-  // }
-
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const { checkUserSession } =this.props
+const App=({ checkUserSession,currentUser }) =>{
+  useEffect(() => {
     checkUserSession();
-    // const {setCurrentUser} =this.props;
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     userRef.onSnapshot((snapShot) => {
-    //       this.props.setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //     });
-    //   } else {
-    //     this.props.setCurrentUser(userAuth);
-    //   }
-    // });
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
     return (
       <div>
         <Header />{" "}
@@ -61,13 +30,12 @@ class App extends React.Component {
             exact
             path='/signin'
             render={() =>
-              this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+              currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
             }
           />
         </Switch>
       </div>
-    );
-  }
+    ); 
 }
 
 // const mapStateToProps = ({ user }) => ({
