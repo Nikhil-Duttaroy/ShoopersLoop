@@ -39,6 +39,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems:[]
       }
+    case CartActionTypes.CHECKOUT_SUCCESS:
+      return{
+        ...state,
+        cartItems:[]
+      }
     default:
       return state;
   }
