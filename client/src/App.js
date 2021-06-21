@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./App.css";
+
 import Header from "./components/Header/Header.components.jsx";
 import HomePage from "./pages/HomePage/HomePage.components.jsx";
 import ShopPage from "./pages/Shop/ShopPage.components.jsx";
@@ -13,6 +13,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../src/redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.actions";
 
+import { GlobalStyle } from "./global.styles.js";
 
 const App=({ checkUserSession,currentUser }) =>{
   useEffect(() => {
@@ -21,6 +22,7 @@ const App=({ checkUserSession,currentUser }) =>{
 
     return (
       <div>
+        <GlobalStyle/>
         <Header />{" "}
         <Switch>
           <Route exact path='/' component={HomePage} />
