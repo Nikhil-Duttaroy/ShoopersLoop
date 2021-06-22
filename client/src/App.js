@@ -15,11 +15,15 @@ import { selectCurrentUser } from "../src/redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.actions";
 
 import { GlobalStyle } from "./global.styles.js";
+// ErrorBoundary
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.component";
+
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.components.jsx"));
 const ShopPage =lazy(()=>import("./pages/Shop/ShopPage.components.jsx"));
 const SignInAndSignUp =lazy(()=>import("./pages/SignInAndSignUp/SignInAndSignUp.components"));
 const CheckoutPage =lazy(()=>import("./pages/Checkout/Checkout.components"));
+
 
 
 const App=({ checkUserSession,currentUser }) =>{
@@ -31,21 +35,23 @@ const App=({ checkUserSession,currentUser }) =>{
       <div>
         <GlobalStyle />
         <Header />{" "}
-        <Suspense fallback={<Spinner/>}>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
+       <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Switch>
+              <Route exact path='/' component={HomePage} />e
+              <Route path='/shop' component={ShopPage} />
+              <Route exact path='/checkout' component={CheckoutPage} />
+              <Route
+                exact
+                path='/signin'
+                render={() =>
+                  currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+                }
+              />
+            </Switch>
+          </Suspense>
+        </ErrorBoundary>
 
-            <Route path='/shop' component={ShopPage} />
-            <Route exact path='/checkout' component={CheckoutPage} />
-            <Route
-              exact
-              path='/signin'
-              render={() =>
-                currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
-              }
-            />
-          </Switch>
-        </Suspense>
       </div>
     ); 
 }
