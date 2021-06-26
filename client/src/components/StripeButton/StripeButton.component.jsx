@@ -12,7 +12,7 @@ const StripeCheckoutButton = ({ price, checkOutSuccess }) => {
   const onToken = (token) => {
     // console.log(token);
     axios({
-      url: "http://localhost:3000/payment",
+      url: "payment",
       method: "post",
       data: {
         amount: priceForStripe,
@@ -24,8 +24,8 @@ const StripeCheckoutButton = ({ price, checkOutSuccess }) => {
         checkOutSuccess();
       })
       .catch((error) => {
-        alert("Something Went Wrong With The Payment . Please Try Again");
         console.log("Payment error: " + JSON.parse(error));
+        alert("Something Went Wrong With The Payment . Please Try Again");
       });
   };
   return (
