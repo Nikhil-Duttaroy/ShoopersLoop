@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const SignUpContainer = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
-  width: 380px;
+  padding: 10px;
 `;
 
 export const SignUpTitle = styled.h2`
