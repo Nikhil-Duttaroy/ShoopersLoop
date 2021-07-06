@@ -23,7 +23,7 @@ const HomePage = lazy(() => import("./pages/HomePage/HomePage.components.jsx"));
 const ShopPage =lazy(()=>import("./pages/Shop/ShopPage.components.jsx"));
 const SignInAndSignUp =lazy(()=>import("./pages/SignInAndSignUp/SignInAndSignUp.components"));
 const CheckoutPage =lazy(()=>import("./pages/Checkout/Checkout.components"));
-
+const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage.component"));
 
 
 const App=({ checkUserSession,currentUser }) =>{
@@ -35,12 +35,13 @@ const App=({ checkUserSession,currentUser }) =>{
       <div>
         <GlobalStyle />
         <Header />{" "}
-       <ErrorBoundary>
+        <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
             <Switch>
               <Route exact path='/' component={HomePage} />e
               <Route path='/shop' component={ShopPage} />
               <Route exact path='/checkout' component={CheckoutPage} />
+              <Route exact path='/contact' component={ContactPage} />
               <Route
                 exact
                 path='/signin'
@@ -51,7 +52,6 @@ const App=({ checkUserSession,currentUser }) =>{
             </Switch>
           </Suspense>
         </ErrorBoundary>
-
       </div>
     ); 
 }
