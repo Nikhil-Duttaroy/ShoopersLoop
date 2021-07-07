@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { firestore } from "../../firebase/firebase.utils";
-import {
-  FormInputLabel,
-  FormInputField,
-  FormTextArea,
-  SubmitButton,
-} from "./ContactPage.styles";
+
+import FormInput from "./../../components/FormInput/FormInput.components";
+import CustomButton from './../../components/CustomButton/CustomButton.components';
+
 
 const ContactPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
-  const [loader, setLoader] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,12 +23,11 @@ const ContactPage = () => {
           message,
         })
         .then(() => {
-          setLoader(false);
           alert("Your message has been submitted👍");
         })
         .catch((error) => {
           alert("Please Try Signing In Before Sending a Message");
-          setLoader(false);
+
         });
 
       setName("");
@@ -42,54 +37,49 @@ const ContactPage = () => {
   };
 
   const formStyle = {
-    height: "100vh",
-    width: "70%",
+    maxWidth:"750px",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
-    /* justify-content: center, */
+ 
     margin: "0 auto",
   };
   return (
-    <form onSubmit={handleSubmit} style={formStyle}>
-      <h1 style={{ marginBottom: "10px", textAlign: "center" }}>
-        Contact Us ☎
-      </h1>
+    <div style={formStyle}>
+      <form onSubmit={handleSubmit}>
+        <h1>Contact Us ☎</h1>
+        <FormInput
+          name='name'
+          type='text'
+          label='Name'
+          value={name}
+          handleChange={(e) => setName(e.target.value)}
+          required
+        />
+        <FormInput
+          name='email'
+          type='email'
+          value={email}
+          label='Email'
+          required
+          handleChange={(e) => setEmail(e.target.value)}
+        />
+        <FormInput
+          name='message'
+          type='text'
+          value={message}
+          handleChange={(e) => setMessage(e.target.value)}
+          label='Message'
+          required
+        ></FormInput>
 
-      <FormInputLabel>Name</FormInputLabel>
-      <FormInputField
-        type='text'
-        placeholder='Name'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-
-      <FormInputLabel>Email</FormInputLabel>
-      <FormInputField
-        type='email'
-        placeholder='Email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      <FormInputLabel>Message</FormInputLabel>
-      <FormTextArea
-        type='text'
-        placeholder='Message'
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        required
-      ></FormTextArea>
-
-      <SubmitButton
-        //   type='submit'
-        loader
-        style={{ background: loader ? "#ccc" : " rgb(2, 2, 110)" }}
-      >
-        Submit
-      </SubmitButton>
-    </form>
+        <CustomButton
+          type='submit'
+          loader>
+          Submit
+        </CustomButton>
+      </form>
+    </div>
   );
 };
 

@@ -4,8 +4,8 @@ const subColor = "grey";
 const mainColor = "black";
 
 const shrinkLabelStyles = css`
-  top: -14px;
-  font-size: 12px;
+  top: -1.2rem;
+  font-size: 1.2rem;
   color: ${mainColor};
 `;
 
