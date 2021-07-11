@@ -31,19 +31,26 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
         ...state,
-        cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id),
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        ),
       };
 
     case CartActionTypes.CLEAR_CART:
-      return{
+      return {
         ...state,
-        cartItems:[]
-      }
+        cartItems: [],
+      };
     case CartActionTypes.CHECKOUT_SUCCESS:
-      return{
+      return {
         ...state,
-        cartItems:[]
-      }
+        cartItems: [],
+      };
+    case CartActionTypes.SET_CART_FROM_FIREBASE:
+      return {
+        ...state,
+        cartItems: action.payload,
+      };
     default:
       return state;
   }

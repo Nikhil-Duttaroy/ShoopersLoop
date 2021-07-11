@@ -40,6 +40,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const getUserCartRef = async (userId) => {
+  const cartsRef = firestore.collection("carts").where("userId", "==", userId);
+  const snapShot = await cartsRef.get();
+
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection("carts").doc();
+    await cartDocRef.set({ userId, cartItems: [] });
+    return cartDocRef;
+  } else {
+    return snapShot.docs[0].ref;
+  }
+};
+
 //To add data to firestore of products
 export const addCollectionAndDocuments = async (
   collectionKey,
@@ -88,4 +101,4 @@ export const firestore = firebase.firestore();
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
-// export const signInWithGoogle = () => auth.signInWithPopup(provider);
+// export const  = () => auth.signInWithPopup(provider);
