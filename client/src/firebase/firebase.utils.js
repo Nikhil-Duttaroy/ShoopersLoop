@@ -40,16 +40,38 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const getUserCartRef = async (userId) => {
-  const cartsRef = firestore.collection("carts").where("userId", "==", userId);
-  const snapShot = await cartsRef.get();
+// export const getUserCartRef = async (userId) => {
+//   const cartsRef = firestore.collection("carts").where("userId", "==", userId);
+//   const snapShot = await cartsRef.get();
 
-  if (snapShot.empty) {
-    const cartDocRef = firestore.collection("carts").doc();
-    await cartDocRef.set({ userId, cartItems: [] });
+//   if (snapShot.empty) {
+//     const cartDocRef = firestore.collection("carts").doc();
+//     await cartDocRef.set({ userId, cartItems: [] });
+//     return cartDocRef;
+//   } else {
+//     return snapShot.docs[0].ref;
+//   }
+// };
+
+export const getUserCartRef = async (userId) => {
+  const cartRef = firestore.collection(`users/${userId}/cart`);
+  const cartSnapshot = await cartRef.get();
+
+  if (cartSnapshot.empty) {
+    const cartDocRef = firestore.collection(`users/${userId}/cart`).doc();
+      
+    try {
+      await cartDocRef.set({
+        id: Math.random(),
+        cartItems: [],
+      });
+    } catch (error) {
+      console.log("error creating cart", error.message);
+    }
+
     return cartDocRef;
   } else {
-    return snapShot.docs[0].ref;
+    return cartSnapshot.docs[0].ref;
   }
 };
 

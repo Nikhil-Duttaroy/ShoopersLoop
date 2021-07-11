@@ -6,6 +6,7 @@ import { addItemToCart, removeItemFromCart } from "./cart.utlis";
 const INITIAL_STATE = {
   hidden: true,
   cartItems:[],
+  id:0
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -20,12 +21,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
+        id: Math.random(),
       };
 
     case CartActionTypes.REMOVE_ITEM:
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
+        id: Math.random(),
       };
 
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
@@ -34,6 +37,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem.id !== action.payload.id
         ),
+        id: Math.random(),
       };
 
     case CartActionTypes.CLEAR_CART:
