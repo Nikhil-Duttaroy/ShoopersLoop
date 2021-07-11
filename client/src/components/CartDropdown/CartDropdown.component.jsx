@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect,useSelector} from "react-redux";
 import CartItem from "./../CartItem/CartItem.component";
 
 import { createStructuredSelector } from "reselect";
@@ -17,27 +17,31 @@ import {
   CartItemsContainer,
 } from "./CartDropdown.styles";
 
-const CartDropdown = ({ cartItems, history, dispatch }) => (
-  <CartDropdownContainer>
-    <CartItemsContainer>
-      {cartItems.length ? (
-        cartItems.map((cartItem) => (
-          <CartItem key={cartItem.id} item={cartItem} />
-        ))
-      ) : (
-        <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
-      )}
-    </CartItemsContainer>
-    <CartDropdownButton
-      onClick={() => {
-        history.push("/checkout");
-        dispatch(toggleCartHidden());
-      }}
-    >
-      GO TO CHECKOUT
-    </CartDropdownButton>
-  </CartDropdownContainer>
-);
+const CartDropdown = ({ cartItems, history, dispatch }) => {
+  const user=useSelector(state=>state.user.currentUser)
+  console.log(user);
+  return (
+    <CartDropdownContainer>
+      <CartItemsContainer>
+        {cartItems.length ? (
+          cartItems.map((cartItem) => (
+            <CartItem key={cartItem.id} item={cartItem} />
+          ))
+        ) : (
+          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+        )}
+      </CartItemsContainer>
+      <CartDropdownButton
+        onClick={() => {
+          user ? history.push("/checkout") : history.push("/signin");
+          dispatch(toggleCartHidden());
+        }}
+      >
+        {user ? "GO TO CHECKOUT" : "SignIN"}
+      </CartDropdownButton>
+    </CartDropdownContainer>
+  );  
+};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
