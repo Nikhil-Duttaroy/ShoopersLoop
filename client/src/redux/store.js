@@ -1,4 +1,4 @@
-import {createStore ,applyMiddleware} from 'redux';
+import {createStore ,applyMiddleware,compose} from 'redux';
 import logger from 'redux-logger'; //used to check why errors occurred
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from "redux-saga";
@@ -16,7 +16,21 @@ if(process.env.NODE_ENV === 'development'){
     middlewares.push(logger)
 }
 
-export const store=createStore(rootreducer,applyMiddleware(...middlewares))
+const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      })
+    : compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(...middlewares)
+  // other store enhancers if any
+);
+
+export const store = createStore(
+  rootreducer,enhancer
+  
+);
 
 sagaMiddleware.run(rootSaga);
 
