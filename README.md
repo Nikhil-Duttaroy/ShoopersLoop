@@ -26,10 +26,10 @@
 
 <a href="https://ibb.co/0sKVRDH"><img src="https://i.ibb.co/dmtJwW8/log.png" alt="log" border="0"></a>
 
-- After u have signed in you will be redirected to the home screen from where choose from Hats , Jackets , Sneaker , Womens , Mens Sections.
+- After you have signed in you will be redirected to the home screen from where you can choose from Hats , Jackets , Sneaker , Womens , Mens Sections.
 <img src="https://i.ibb.co/MDtPnJ1/sneak.png" alt="sneak" border="0">
 
-- Add items to cart of your choosing by navigation through the products and have a small preview by click on the cart icon.
+- Add items to the cart of your choosing by navigating  through the products and have a small preview by click on the cart icon.
 <img src="https://i.ibb.co/jg90CmZ/cart-icon.png" alt="cart-icon" border="0">
 
 - Click on Go To Checkout to open the checkout tab to proceed to payment. Here you can edit and delete the products that you have added to the cart.
@@ -55,9 +55,9 @@
 - React JS 
 - Using a State Management Library Like Redux
 - Using Firebase
-- Creating Persistance
-- Using best practices to imporve performance (lazy , memo)
-- Using Styled Componens
+- Creating Persistence
+- Using best practices to improve  performance (lazy , memo)
+- Using Styled Components
 - How to Refactor Code Properly
 - Using Stripe
 - Hosting on heroku
