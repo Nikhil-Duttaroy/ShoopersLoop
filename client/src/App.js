@@ -1,4 +1,4 @@
-import React,{useEffect , lazy , Suspense} from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -14,9 +14,11 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../src/redux/user/user.selector";
 import { checkUserSession } from "./redux/user/user.actions";
 
-import { GlobalStyle } from "./global.styles.js";
+import { GlobalStyle, lightTheme,darkTheme } from "./global.styles.js";
 // ErrorBoundary
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.component";
+
+import { ThemeProvider } from "styled-components";
 
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.components.jsx"));
@@ -31,27 +33,36 @@ const App=({ checkUserSession,currentUser }) =>{
     checkUserSession();
   }, [checkUserSession]);
 
+  const [theme,setTheme] =useState("dark")
+
+  const themeToggle=()=>{
+    theme==='light' ? setTheme("dark") : setTheme("light")
+  }
+
     return (
       <div>
-        <GlobalStyle />
-        <Header />{" "}
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Switch>
-              <Route exact path='/' component={HomePage} />e
-              <Route path='/shop' component={ShopPage} />
-              <Route exact path='/checkout' component={CheckoutPage} />
-              <Route exact path='/contact' component={ContactPage} />
-              <Route
-                exact
-                path='/signin'
-                render={() =>
-                  currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
-                }
-              />
-            </Switch>
-          </Suspense>
-        </ErrorBoundary>
+        <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+          <GlobalStyle />
+          <Header theme={theme} themeToggle={themeToggle} />{" "}
+          {/* <button onClick={() => themeToggle()}>Change Theme</button> */}
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Switch>
+                <Route exact path='/' component={HomePage} />e
+                <Route path='/shop' component={ShopPage} />
+                <Route exact path='/checkout' component={CheckoutPage} />
+                <Route exact path='/contact' component={ContactPage} />
+                <Route
+                  exact
+                  path='/signin'
+                  render={() =>
+                    currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+                  }
+                />
+              </Switch>
+            </Suspense>
+          </ErrorBoundary>
+        </ThemeProvider>
       </div>
     ); 
 }

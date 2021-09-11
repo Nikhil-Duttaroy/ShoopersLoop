@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react'
+import React ,{useEffect,useState} from 'react'
 import {
   CollectionPageContainer,
   CollectionTitle,
@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { selectCollection } from './../../redux/shop/shop.selector';
 import CollectionItem from './../../components/CollectionItem/CollectionItem.components';
+import FormInput from '../../components/FormInput/FormInput.components.jsx';
 
 
 
@@ -15,19 +16,41 @@ const CollectionPage = ({ collection }) => {
     window.scrollTo(0, 0);
   });
   
+  const [searchTerm,setSearchTerm] = useState("")
   
   const { title, items } = collection;
   // console.log(collection);
 
   return (
-    <CollectionPageContainer>
-      <CollectionTitle>{title}</CollectionTitle>
-      <CollectionItemsContainer>
-        {items.map((item) => (
-          <CollectionItem key={item.id} item={item} />
-        ))}
-      </CollectionItemsContainer>
-    </CollectionPageContainer>
+    <>
+    {/* <div style={{backgroundColor: "red" , height:"100%" , width:"100%"}}></div> */}
+      <CollectionPageContainer>
+        <FormInput
+        style={{margin:"0"}}
+          type='text'
+          placeholder='SEARCH... '
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+        <CollectionTitle>{title}</CollectionTitle>
+        <CollectionItemsContainer>
+          {items
+            .filter((val) => {
+              if (searchTerm === "") {
+                return val;
+              } else if (
+                val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((item) => (
+              <CollectionItem key={item.id} item={item} />
+            ))}
+        </CollectionItemsContainer>
+      </CollectionPageContainer>
+    </>
   );
 };
 

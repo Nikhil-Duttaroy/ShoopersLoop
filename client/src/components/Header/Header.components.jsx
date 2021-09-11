@@ -11,7 +11,10 @@ import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "./../../redux/cart/cart.selector";
 import { selectCurrentUser } from "./../../redux/user/user.selector";
 
-import { ReactComponent as Logo } from "../../assets/crown.svg";
+import {
+  ReactComponent as Logo,
+} from "../../assets/shoppers-loop.svg";
+
 
 //Styled Components import
 import {
@@ -23,7 +26,7 @@ import {
 } from "./Header.styles";
 import { signOutStart } from "./../../redux/user/user.actions";
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
+const Header = ({ currentUser, hidden, signOutStart, themeToggle,theme }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
       <Logo className='logo' />
@@ -36,6 +39,10 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       ) : (
         <OptionLink to='/signin'>SIGNIN</OptionLink>
       )}
+      <OptionLink onClick={() => themeToggle()}>
+        {theme.toUpperCase()}
+      </OptionLink>
+
       <CartIcon />
     </OptionsContainer>
     {hidden ? null : <CartDropdown />}
