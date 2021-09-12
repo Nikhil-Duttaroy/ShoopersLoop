@@ -14,6 +14,8 @@ import { selectCurrentUser } from "./../../redux/user/user.selector";
 import {
   ReactComponent as Logo,
 } from "../../assets/shoppers-loop.svg";
+import  sun from "../../assets/sun.svg";
+import moon from "../../assets/moon.svg";
 
 
 //Styled Components import
@@ -26,7 +28,7 @@ import {
 } from "./Header.styles";
 import { signOutStart } from "./../../redux/user/user.actions";
 
-const Header = ({ currentUser, hidden, signOutStart, themeToggle,theme }) => (
+const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
       <Logo className='logo' />
@@ -40,7 +42,11 @@ const Header = ({ currentUser, hidden, signOutStart, themeToggle,theme }) => (
         <OptionLink to='/signin'>SIGNIN</OptionLink>
       )}
       <OptionLink onClick={() => themeToggle()}>
-        {theme.toUpperCase()}
+        {theme === "light" ? (
+          <img src={moon} alt='' style={{ width: "1.5rem" }} />
+        ) : (
+          <img src={sun} alt='' style={{ width: "1.5rem" }} />
+        )}
       </OptionLink>
 
       <CartIcon />
