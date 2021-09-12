@@ -295,10 +295,10 @@
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
 
-"concurrently@^6.2.0":
-  "integrity" "sha512-v9I4Y3wFoXCSY2L73yYgwA9ESrQMpRn80jMcqMgHx720Hecz2GZAvTI6bREVST6lkddNypDKRN22qhK0X8Y00g=="
-  "resolved" "https://registry.npmjs.org/concurrently/-/concurrently-6.2.0.tgz"
-  "version" "6.2.0"
+"concurrently@^6.2.1":
+  "integrity" "sha512-emgwhH+ezkuYKSHZQ+AkgEpoUZZlbpPVYCVv7YZx0r+T7fny1H03r2nYRebpi2DudHR4n1Rgbo2YTxKOxVJ4+g=="
+  "resolved" "https://registry.npmjs.org/concurrently/-/concurrently-6.2.1.tgz"
+  "version" "6.2.1"
   dependencies:
     "chalk" "^4.1.0"
     "date-fns" "^2.16.1"
