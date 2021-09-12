@@ -40,7 +40,7 @@ app.post("/payment", (req, res) => {
     source: req.body.token.id,
     amount: req.body.amount,
     currency: "inr",
-    description: "Learning React",
+    description: "Shoppers Loop",
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
