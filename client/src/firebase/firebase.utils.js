@@ -3,13 +3,19 @@ import "firebase/firestore"; //importing firestore db
 import "firebase/auth"; //importing authentication
 
 const config = {
-  apiKey: "AIzaSyBw85mnvtzocAy97XSMhxNsI5Iw1b5sgWY",
-  authDomain: "crwn-db-8c4b6.firebaseapp.com",
-  projectId: "crwn-db-8c4b6",
-  storageBucket: "crwn-db-8c4b6.appspot.com",
-  messagingSenderId: "208348582707",
-  appId: "1:208348582707:web:14b90f2986a3c72aa8a446",
-  measurementId: "G-CNXEZQB624",
+  // apiKey: "AIzaSyBw85mnvtzocAy97XSMhxNsI5Iw1b5sgWY",
+  // authDomain: "crwn-db-8c4b6.firebaseapp.com",
+  // projectId: "crwn-db-8c4b6",
+  // storageBucket: "crwn-db-8c4b6.appspot.com",
+  // messagingSenderId: "208348582707",
+  // appId: "1:208348582707:web:14b90f2986a3c72aa8a446",
+  // measurementId: "G-CNXEZQB624",
+  apiKey: "AIzaSyA4hxPdh5EDxjlP_5gWywNKZLbd7FKpC9M",
+  authDomain: "shoppers-loop.firebaseapp.com",
+  projectId: "shoppers-loop",
+  storageBucket: "shoppers-loop.appspot.com",
+  messagingSenderId: "853062858099",
+  appId: "1:853062858099:web:709026d0d3f7ea7e110106"
 };
 
 //getting uid in firestoredb from google auth
@@ -76,6 +82,7 @@ export const getUserCartRef = async (userId) => {
 };
 
 //To add data to firestore of products
+//for one time use
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -89,6 +96,12 @@ export const addCollectionAndDocuments = async (
   });
   return await batch.commit();
 };
+
+//for one time use
+// export const addCollectionAndItems = (collectionKey, objectsToAdd) => {
+//   const collectionRef = firestore.collection(collectionKey);
+// }
+
 
 export const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollection = collections.docs.map((doc) => {
