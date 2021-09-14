@@ -23,7 +23,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const LogoContainer = styled(Link)`
-  height: 100%;
+  height: 10vh;
   width: 10%;
   padding: 15px;
   @media screen and (max-width: 800px) {

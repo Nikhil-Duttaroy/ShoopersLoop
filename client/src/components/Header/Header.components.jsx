@@ -14,6 +14,9 @@ import { selectCurrentUser } from "./../../redux/user/user.selector";
 import {
   ReactComponent as Logo,
 } from "../../assets/shoppers-loop.svg";
+import {
+  ReactComponent as LogoSmall,
+} from "../../assets/shoppers-loop-small.svg";
 import  sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
 
@@ -31,7 +34,14 @@ import { signOutStart } from "./../../redux/user/user.actions";
 const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
-      <Logo className='logo' />
+      {/* <Logo className='logo' /> */}
+      {typeof window !== "undefined" ? (
+        window.innerWidth >= 400 ? (
+          <Logo />
+        ) : (
+          <LogoSmall />
+        )
+      ) : null}
     </LogoContainer>
     <OptionsContainer>
       <OptionLink to='/shop'>SHOP</OptionLink>
