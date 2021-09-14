@@ -6,7 +6,10 @@ const enforce=require("express-sslify")
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(
+  "sk_test_51JZYjBSGFvUNqDCVogBLTIqrqu5xdAwyaQDQX89czSlaFuHwCB77UvikJ13gl71njZ3jlaDd07rY9ExrHtAf2ham00df7wLQgo"
+);
 
 const app = express();
 const port = process.env.PORT || 5000;

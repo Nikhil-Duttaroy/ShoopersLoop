@@ -8,7 +8,9 @@ import { checkOutSuccess } from '../../redux/cart/cart.actions';
 const StripeCheckoutButton = ({ price, checkOutSuccess }) => {
   const priceForStripe = price * 100;
   const publishableKey =
-    "pk_test_51IiYKkSBbaq459js3CextsJPU1LnSVmY0Eo8gHDT9zONQKCfJ2PJbLQtFFBu9QtlZ6zsYHy9EGpASnMzIKYvohYM008Mc1mNC0";
+"pk_test_51JZYjBSGFvUNqDCVCRA0HcepI7LkueBNur7rgRJCfqgWmcVfAjN4k44d2hF8vraD6Z2bf40Q4BKshcvAWhirIgxI00dgkWnceN";
+
+    // "pk_test_51IiYKkSBbaq459js3CextsJPU1LnSVmY0Eo8gHDT9zONQKCfJ2PJbLQtFFBu9QtlZ6zsYHy9EGpASnMzIKYvohYM008Mc1mNC0";
   const onToken = (token) => {
     // console.log(token);
     axios({
@@ -24,7 +26,7 @@ const StripeCheckoutButton = ({ price, checkOutSuccess }) => {
         checkOutSuccess();
       })
       .catch((error) => {
-        console.log("Payment error: " + JSON.parse(error));
+        console.log("Payment error: " + JSON.parse(error.response));
         alert("Something Went Wrong With The Payment . Please Try Again");
       });
   };
