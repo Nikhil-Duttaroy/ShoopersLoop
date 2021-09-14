@@ -1,8 +1,11 @@
 // import SHOP_DATA from "./Shop.data.jsx";
 import ShopActionTypes from "./shop.types";
 
+
+
 const INITIAL_STATE = {
   collections: null,
+  // collections:SHOP_DATA,
   isFetching: false,
   errorMessage:undefined
 };
@@ -20,6 +23,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         collections: action.payload,
+        // collections:state.collections
       };
 
     case ShopActionTypes.FETCH_COLLECTIONS_FAILURE:
@@ -35,3 +39,6 @@ const shopReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default shopReducer;
+
+
+
