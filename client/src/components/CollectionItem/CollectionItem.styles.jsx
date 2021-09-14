@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CustomButton from './../CustomButton/CustomButton.components';
+import FormInput from './../FormInput/FormInput.components';
 
 export const CollectionItemContainer = styled.div`
   width: 22vw;
@@ -69,4 +70,25 @@ export const NameContainer = styled.span`
 export const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
+`;
+
+export const FormInputContainer1 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* flex-wrap: wrap; */
+  flex:flex-grow;
+  padding: 0;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+`;
+export const FormInput1 = styled(FormInput)`
+  padding: 0;
+  margin: 0;
+  @media screen and (max-width: 800px) {
+    width: 70%;
+    margin:0 auto;
+  }
 `;
