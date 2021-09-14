@@ -20,6 +20,9 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.component";
 
 import { ThemeProvider } from "styled-components";
 
+//one time use
+// import { SelectCollectionForPreview } from "./redux/shop/shop.selector";
+// import { addCollectionAndDocuments } from "./firebase/firebase.utils.js";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.components.jsx"));
 const ShopPage =lazy(()=>import("./pages/Shop/ShopPage.components.jsx"));
@@ -28,44 +31,50 @@ const CheckoutPage =lazy(()=>import("./pages/Checkout/Checkout.components"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage.component"));
 
 
-const App=({ checkUserSession,currentUser }) =>{
+const App = ({ checkUserSession, currentUser }) => {
+  //one time to add data to shop firestore
+  // useEffect(() => {
+  //   addCollectionAndDocuments("collections", collectionsArray.map(({title,items})=>({title,items})));
+
+  // });
+
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
 
-  const [theme,setTheme] =useState("dark")
+  const [theme, setTheme] = useState("dark");
 
-  const themeToggle=()=>{
-    theme==='light' ? setTheme("dark") : setTheme("light")
-  }
+  const themeToggle = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
 
-    return (
-      <div>
-        <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-          <GlobalStyle />
-          <Header theme={theme} themeToggle={themeToggle} />{" "}
-          {/* <button onClick={() => themeToggle()}>Change Theme</button> */}
-          <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              <Switch>
-                <Route exact path='/' component={HomePage} />e
-                <Route path='/shop' component={ShopPage} />
-                <Route exact path='/checkout' component={CheckoutPage} />
-                <Route exact path='/contact' component={ContactPage} />
-                <Route
-                  exact
-                  path='/signin'
-                  render={() =>
-                    currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
-                  }
-                />
-              </Switch>
-            </Suspense>
-          </ErrorBoundary>
-        </ThemeProvider>
-      </div>
-    ); 
-}
+  return (
+    <div>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <Header theme={theme} themeToggle={themeToggle} />{" "}
+        {/* <button onClick={() => themeToggle()}>Change Theme</button> */}
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Switch>
+              <Route exact path='/' component={HomePage} />e
+              <Route path='/shop' component={ShopPage} />
+              <Route exact path='/checkout' component={CheckoutPage} />
+              <Route exact path='/contact' component={ContactPage} />
+              <Route
+                exact
+                path='/signin'
+                render={() =>
+                  currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+                }
+              />
+            </Switch>
+          </Suspense>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </div>
+  );
+};
 
 // const mapStateToProps = ({ user }) => ({
 //   currentUser: user.currentUser, //state.user.currentUser  ----> Root reducer [user] =>userReducer[currentUser]
@@ -73,6 +82,8 @@ const App=({ checkUserSession,currentUser }) =>{
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  //one time
+  // collectionsArray:SelectCollectionForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
