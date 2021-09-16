@@ -10,6 +10,7 @@ body{
     padding: 20px 60px;
     background-color:${(props) => props.theme.body};
     color:${(props) => props.theme.fontColor};
+    border:${(props) => props.theme.fontColor};
     
 
     @media screen and (max-width:800px){
