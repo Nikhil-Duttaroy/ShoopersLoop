@@ -12,13 +12,13 @@ const items = [
     src='https://i.ibb.co/wNWVMCJ/wardrobe-1.jpg'
     alt="1"
     onDragStart={handleDragStart}
-    style={{ width: "100%", height: "70vh", objectFit: "contain" }}
+    style={{ width: "100%", height: "70vh", objectFit: "cover" }}
   />,
   <img
     alt='2'
     src='https://i.ibb.co/C9sw3F8/overview.jpg'
     onDragStart={handleDragStart}
-    style={{ width: "100%", height: "70vh", objectFit: "contain" }}
+    style={{ width: "100%", height: "70vh", objectFit: "cover" }}
   />,
 ];
 
@@ -30,11 +30,10 @@ const items = [
         items={items}
         autoPlay='true'
         animationDuration='5000'
-        disableDotsControls='false'
-        // autoPlayControls='false'
+        disableDotsControls='true'
         infinite='true'
       />
-      <Directory />
+      <Directory  />
     </HomePageContainer>
   );
   }

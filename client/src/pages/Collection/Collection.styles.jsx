@@ -23,3 +23,26 @@ export const CollectionItemsContainer = styled.div`
     grid-gap: 15px;
   }
 `;
+
+export const TabContainer = styled.div`
+  width: 100%;
+  padding: 0.5rem 0;
+  /* font-size: 0.8rem; */
+  display: flex;
+  justify-content: space-between;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+  scrollbar-width: none;
+`;
+
+
+export const TabItem = styled.div`
+    margin-right: 1rem;
+    padding: 0.15rem 1rem;
+    cursor: pointer;
+    white-space: nowrap ;
+    border: 1px solid;
+    border-radius: 999px;
+`;
