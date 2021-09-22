@@ -7,6 +7,7 @@ import {
   FormInputContainer,
   FormInputLabel,
 } from "./FormInput.styles";
+import clear from "../../assets/clear.svg";
 
 const FormInput = ({ handleChange, label, ...props }) => (
   <GroupContainer>
@@ -16,6 +17,7 @@ const FormInput = ({ handleChange, label, ...props }) => (
         {label}
       </FormInputLabel>
     ) : null}
+   
   </GroupContainer>
 );
 

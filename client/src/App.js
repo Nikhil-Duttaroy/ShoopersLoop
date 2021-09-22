@@ -19,6 +19,7 @@ import { GlobalStyle, lightTheme,darkTheme } from "./global.styles.js";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.component";
 
 import { ThemeProvider } from "styled-components";
+import useAlan from "./hooks/useAlan";
 
 //one time use
 // import { SelectCollectionForPreview } from "./redux/shop/shop.selector";
@@ -37,6 +38,7 @@ const App = ({ checkUserSession, currentUser }) => {
   //   addCollectionAndDocuments("collections", collectionsArray.map(({title,items})=>({title,items})));
 
   // });
+  useAlan();
 
   useEffect(() => {
     checkUserSession();

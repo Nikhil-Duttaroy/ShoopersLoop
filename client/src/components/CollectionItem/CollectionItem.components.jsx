@@ -4,6 +4,7 @@ import './CollectionItem.styles.jsx'
 import { connect } from "react-redux";
 
 import { addItem } from '../../redux/cart/cart.actions';
+// import useAlan from "../../hooks/useAlan.jsx";
 
 import {
   CollectionItemContainer,
@@ -13,10 +14,13 @@ import {
   NameContainer,
   PriceContainer
 } from './CollectionItem.styles';
+import useAlan from '../../hooks/useAlan.jsx';
 
 const CollectionItem = ({ item, addItem }) => {
-  const { name, price, imageUrl, description ,tags,category} = item;
+  // useAlan();
 
+  const { name, price, imageUrl, description ,tags,category} = item;
+// useAlan(item)
   return (
     <CollectionItemContainer>
       <BackgroundImage className='image' imageUrl={imageUrl} />

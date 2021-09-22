@@ -4,6 +4,7 @@ import Directory from './../../components/Directory/Directory.components';
 import {HomePageContainer} from './HomePage.styles';
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import Footer from './../../components/Footer/Footer.component';
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -34,6 +35,7 @@ const items = [
         infinite='true'
       />
       <Directory  />
+      {/* <Footer/> */}
     </HomePageContainer>
   );
   }

@@ -12,6 +12,9 @@ import CollectionItem from './../../components/CollectionItem/CollectionItem.com
 import FormInput from '../../components/FormInput/FormInput.components.jsx';
 import { FormInput1, FormInputContainer1 } from '../../components/CollectionItem/CollectionItem.styles.jsx';
 // import Tabs from '../../components/Tabs/Tabs.component.jsx';
+// import clear from "../../assets/clear.svg";
+import CustomButton from './../../components/CustomButton/CustomButton.components';
+import useAlan from './../../hooks/useAlan';
 
 
 
@@ -31,15 +34,9 @@ const CollectionPage = ({ collection }) => {
   if (rangeTerm2 === "") setRangeTerm2(2500);
 
   const { title, items } = collection;
-  // const {category} =items
-  //   const m=items.map((item)=> console.log(item))
-  //   console.log(m);
-  // const arr = items.filter(
-  //   (value, index) => value.category.indexOf(item.category) === index
-  // );
-   // const arr=items.filter((value) => value.category === "beanie")
-  // console.log(arr);
-  // console.log(arr);
+  // console.log(collection);
+  // console.log(items);
+
   const uniqueCategory = [...new Set(items.map((itm) => itm["category"]))];
   const uniqueColour = [...new Set(items.map((itm) => itm["colour"]))];
 
@@ -75,6 +72,7 @@ const CollectionPage = ({ collection }) => {
     );
   }, [searchTerm, rangeTerm1, rangeTerm2, colourTerm, categoryTerm, items]);
 
+  // useAlan(collection);
   return (
     <>
       {/* <div style={{backgroundColor: "red" , height:"100%" , width:"100%"}}></div> */}
@@ -84,6 +82,7 @@ const CollectionPage = ({ collection }) => {
         <FormInput
           style={{ margin: "0" }}
           type='text'
+          value={searchTerm}
           placeholder='Search Name '
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -92,6 +91,7 @@ const CollectionPage = ({ collection }) => {
         <FormInputContainer1>
           <FormInput1
             type='text'
+            // value={rangeTerm1}
             placeholder='Min'
             onChange={(e) => {
               setRangeTerm1(e.target.value);
@@ -99,6 +99,7 @@ const CollectionPage = ({ collection }) => {
           />
           <FormInput1
             type='text'
+            // value={rangeTerm2}
             placeholder='Max'
             onChange={(e) => {
               setRangeTerm2(e.target.value);
@@ -108,6 +109,7 @@ const CollectionPage = ({ collection }) => {
           <FormInput1
             type='text'
             placeholder='Colour'
+            value={colourTerm}
             onChange={(e) => {
               setColourTerm(e.target.value);
             }}
@@ -120,6 +122,16 @@ const CollectionPage = ({ collection }) => {
             ))}
           </datalist>
         </FormInputContainer1>
+        <CustomButton
+          onClick={() => {
+            setSearchTerm("");
+            setRangeTerm1("");
+            setRangeTerm2("");
+            setColourTerm("");
+          }}
+        >
+          Clear Search Filters
+        </CustomButton>
         <TabContainer>
           <TabItem
             onClick={(e) => {
@@ -128,20 +140,17 @@ const CollectionPage = ({ collection }) => {
           >
             ALL
           </TabItem>
-          {
-
-            uniqueCategory.map((item) => (
-              <TabItem
-                onClick={(e) => {
-                  setCategoryTerm(item);
-                }}
-                
-              >
-                {item}
-              </TabItem>
-            ))
-          }
+          {uniqueCategory.map((item) => (
+            <TabItem
+              onClick={(e) => {
+                setCategoryTerm(item);
+              }}
+            >
+              {item}
+            </TabItem>
+          ))}
         </TabContainer>
+
         <CollectionItemsContainer>
           {filterProducts.map((item) => (
             <CollectionItem key={item.id} item={item} />
