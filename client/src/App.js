@@ -20,10 +20,13 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.component";
 
 import { ThemeProvider } from "styled-components";
 import useAlan from "./hooks/useAlan";
+import { SelectCollectionForPreview } from "./redux/shop/shop.selector.js";
+import {  useDispatch,useSelector } from "react-redux";
 
 //one time use
 // import { SelectCollectionForPreview } from "./redux/shop/shop.selector";
 // import { addCollectionAndDocuments } from "./firebase/firebase.utils.js";
+import { fetchCollectionsStart } from './redux/shop/shop.actions';
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.components.jsx"));
 const ShopPage =lazy(()=>import("./pages/Shop/ShopPage.components.jsx"));
@@ -38,14 +41,19 @@ const App = ({ checkUserSession, currentUser }) => {
   //   addCollectionAndDocuments("collections", collectionsArray.map(({title,items})=>({title,items})));
 
   // });
-  useAlan();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
 
-  const [theme, setTheme] = useState("dark");
+useEffect(() => {
+  dispatch(fetchCollectionsStart());
+}, [dispatch]);
 
+  const [theme, setTheme] = useState("dark");
+  // const itemCollection = useSelector(SelectCollectionForPreview);
+  // console.log(itemCollection);
   const themeToggle = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
@@ -54,8 +62,11 @@ const App = ({ checkUserSession, currentUser }) => {
     <div>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyle />
+        {/* <useAlan/> */}
+        <button style={{display:"none"}} onClick={useAlan()}>Alan</button>
         <Header theme={theme} themeToggle={themeToggle} />{" "}
         {/* <button onClick={() => themeToggle()}>Change Theme</button> */}
+        {/* <div useAlan>{useAlan}</div> */}
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
             <Switch>
