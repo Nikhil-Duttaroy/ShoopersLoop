@@ -949,7 +949,7 @@ const useAlan = () => {
     itemCollection.map(({ items }) => {
       if (findItem(items, pname)) {
         
-        // console.log(findItem(items, pname));
+        console.log(findItem(items, pname));
         dispatch(addItem(findItem(items, pname)));
       }
     });
