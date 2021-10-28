@@ -7,7 +7,7 @@ export const SignInContainer = styled.div`
   padding:10px
 `;
 
-export const SignInTitle = styled.h2`
+export const SignInTitle = styled.h1`
   margin: 10px 0;
 `;
 

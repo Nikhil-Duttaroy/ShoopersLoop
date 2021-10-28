@@ -3,6 +3,7 @@ import { firestore } from "../../firebase/firebase.utils";
 
 import FormInput from "./../../components/FormInput/FormInput.components";
 import CustomButton from './../../components/CustomButton/CustomButton.components';
+import { Helmet } from "react-helmet-async";
 
 
 const ContactPage = () => {
@@ -45,41 +46,50 @@ const ContactPage = () => {
     margin: "0 auto",
   };
   return (
-    <div style={formStyle}>
-      <form onSubmit={handleSubmit}>
-        <h1>Contact Us ☎</h1>
-        <FormInput
-          name='name'
-          type='text'
-          label='Name'
-          value={name}
-          handleChange={(e) => setName(e.target.value)}
-          required
+    <>
+      <Helmet>
+        <title>Checkout Page</title>
+        <meta
+          name='description'
+          content='Checkout your items from cart, Shoopers Loop.'
         />
-        <FormInput
-          name='email'
-          type='email'
-          value={email}
-          label='Email'
-          required
-          handleChange={(e) => setEmail(e.target.value)}
-        />
-        <FormInput
-          name='message'
-          type='text'
-          value={message}
-          handleChange={(e) => setMessage(e.target.value)}
-          label='Message'
-          required
-        ></FormInput>
+        <link rel='canonical' href='/checkout' />
+      </Helmet>
 
-        <CustomButton
-          type='submit'
-          loader>
-          Submit
-        </CustomButton>
-      </form>
-    </div>
+      <div style={formStyle}>
+        <form onSubmit={handleSubmit}>
+          <h1>Contact Us ☎</h1>
+          <FormInput
+            name='name'
+            type='text'
+            label='Name'
+            value={name}
+            handleChange={(e) => setName(e.target.value)}
+            required
+          />
+          <FormInput
+            name='email'
+            type='email'
+            value={email}
+            label='Email'
+            required
+            handleChange={(e) => setEmail(e.target.value)}
+          />
+          <FormInput
+            name='message'
+            type='text'
+            value={message}
+            handleChange={(e) => setMessage(e.target.value)}
+            label='Message'
+            required
+          ></FormInput>
+
+          <CustomButton type='submit' loader>
+            Submit
+          </CustomButton>
+        </form>
+      </div>
+    </>
   );
 };
 

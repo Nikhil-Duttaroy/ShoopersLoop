@@ -4,7 +4,8 @@ import Directory from './../../components/Directory/Directory.components';
 import {HomePageContainer} from './HomePage.styles';
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import Footer from './../../components/Footer/Footer.component';
+// import Footer from './../../components/Footer/Footer.component';
+import { Helmet } from "react-helmet-async";
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -25,18 +26,25 @@ const items = [
 
   const HomePage =() =>{
   return (
-    <HomePageContainer>
-      <AliceCarousel
-        mouseTracking
-        items={items}
-        autoPlay='true'
-        animationDuration='5000'
-        disableDotsControls='true'
-        infinite='true'
-      />
-      <Directory  />
-      {/* <Footer/> */}
-    </HomePageContainer>
+    <>
+      <Helmet>
+        <title>ShoopersLoop : Voice Controlled Ecommerce App</title>
+        <meta name='description' content='ShoopersLoop : Voice Controlled Ecommerce App , Homepage for shoopersloop' />
+        <link rel='canonical' href='/' />
+      </Helmet>
+      <HomePageContainer>
+        <AliceCarousel
+          mouseTracking
+          items={items}
+          autoPlay='true'
+          animationDuration='5000'
+          disableDotsControls='true'
+          infinite='true'
+        />
+        <Directory />
+        {/* <Footer/> */}
+      </HomePageContainer>
+    </>
   );
   }
 

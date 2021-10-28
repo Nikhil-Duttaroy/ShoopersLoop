@@ -1,0 +1,10 @@
+https://shoopersloop.herokuapp.com/
+https://shoopersloop.herokuapp.com/shop
+https://shoopersloop.herokuapp.com/contact
+https://shoopersloop.herokuapp.com/signin
+https://shoopersloop.herokuapp.com/checkout
+https://shoopersloop.herokuapp.com/shop/jackets
+https://shoopersloop.herokuapp.com/shop/hats
+https://shoopersloop.herokuapp.com/shop/sneakers
+https://shoopersloop.herokuapp.com/shop/womens
+https://shoopersloop.herokuapp.com/shop/mens

@@ -4,6 +4,8 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchCollectionsStart } from "./../../redux/shop/shop.actions";
 import Spinner from "./../../components/Spinner/Spinner.component";
+import { Helmet } from "react-helmet-async";
+
 
 // import  CollectionsOverviewContainer  from './../../components/CollectionsOverview/CollectionsOverview.container';
 // import CollectionsPageContainer from './../Collection/Collection.container';
@@ -18,6 +20,12 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   }, [fetchCollectionsStart]);
 
   return (
+    <>
+    <Helmet>
+        <title>ShoopersLoop: Shop</title>
+        <meta name='description' content='Shoppage for shoopersloop , choose from your favorite clothing categories' />
+        <link rel='canonical' href='/shop' />
+      </Helmet>
     <div className='shop-page'>
       <Suspense fallback={<Spinner/>}>
       <Route
@@ -32,6 +40,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
       />
       </Suspense>
     </div>
+    </>
   );
 };
 
