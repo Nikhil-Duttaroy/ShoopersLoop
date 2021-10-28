@@ -33,10 +33,10 @@ const StripeCheckoutButton = ({ price, checkOutSuccess }) => {
   return (
     <StripeCheckout
       label='Pay Now'
-      name='Shopic Ltd.'
+      name='ShoopersLoop Ltd.'
       billingAddress
       shippingAddress
-      image='https://svgshare.com/i/CUz.svg'
+      image='https://i.ibb.co/myxZ3fj/shoppers-loop-small.png'
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
