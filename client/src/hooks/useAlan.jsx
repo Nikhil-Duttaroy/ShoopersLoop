@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import alanBtn from "@alan-ai/alan-sdk-web";
-import { addItem, toggleCartHidden } from "./../redux/cart/cart.actions";
+import { addItem, removeItem, toggleCartHidden } from "./../redux/cart/cart.actions";
 import { fetchCollectionsStart } from './../redux/shop/shop.actions';
 
 import {
@@ -945,6 +945,8 @@ const useAlan = () => {
       ],
     },
   ];
+
+  //Add item to cart
   const ListItem = (itemCollection, pname) => {
     itemCollection.map(({ items }) => {
       if (findItem(items, pname)) {
@@ -962,8 +964,22 @@ const useAlan = () => {
     return itemReturned;
   };
 
-  //  const name="black converse"
-  //  ListItem(itemCollection, name);
+  //Remove item from cart
+ const ListItemToRemove = (itemCollection, pname) => {
+   itemCollection.map(({ items }) => {
+     if (findItemToRemove(items, pname)) {
+       console.log(findItemToRemove(items, pname));
+       dispatch(removeItem(findItemToRemove(items, pname)));
+     }
+   });
+ };
+
+ const findItemToRemove = (items, pname) => {
+   const itemReturned = items.find((item) => {
+     return item.name.toLowerCase() === pname.toLowerCase();
+   });
+   return itemReturned;
+ };
 
 
   useEffect(() => {
@@ -997,32 +1013,23 @@ const useAlan = () => {
         } else if (commandData.command === "open-signin") {
           history.push("/");
           history.push("/signin");
+        } else if (commandData.command === "open-checkout") {
+          history.push("/");
+          history.push("/checkout");
         } else if (commandData.command === "add-item") {
           const { name } = commandData.payload;
-          // const urlParam = location.pathname.replace("/shop/", "");
-          // console.log(urlParam);
-          // const {items} = itemCollection1[urlParam]
-          // console.log(findItem(items, name));
-          // const result = findItem(items, name);
-          // console.log(result);
-          // dispatch(addItem(result));
-
-          // const findItem = (itemCollection, name) => {
-          //   return itemCollection.map(({ id, items }) => {
-          //     const res = items
-          //       .filter((item, idx) => {
-          //         return item.name.toLowerCase().includes(name.toLowerCase());
-          //       })
-          //       .filter((itm) => {
-          //         console.log(itm);
-          //         dispatch(addItem(itm));
-          //         return itm;
-          //       });
-          //   });
-          // };
           console.log(itemCollection);
           ListItem(itemCollection, name);
         }
+        else if (commandData.command === "remove-item") {
+          const { name } = commandData.payload;
+        //  console.log("In remove" + name);
+          // console.log(itemCollection);
+          ListItemToRemove(itemCollection, name);
+        }
+
+
+
       },
     });
     // return () => console.log("UMOUNT")
