@@ -53,9 +53,9 @@ const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
       )}
       <OptionLink onClick={() => themeToggle()}>
         {theme === "light" ? (
-          <img src={moon} alt='' style={{ width: "1.5rem" }} />
+          <img src={moon} alt='dark mode' style={{ width: "1.5rem" }} />
         ) : (
-          <img src={sun} alt='' style={{ width: "1.5rem" }} />
+          <img src={sun} alt='light mode' style={{ width: "1.5rem" }} />
         )}
       </OptionLink>
 
