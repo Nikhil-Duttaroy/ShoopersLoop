@@ -2,13 +2,8 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-
 import Header from "./components/Header/Header.components.jsx";
 import Spinner from './components/Spinner/Spinner.component';
-// import HomePage from "./pages/HomePage/HomePage.components.jsx";
-// import ShopPage from "./pages/Shop/ShopPage.components.jsx";
-// import SignInAndSignUp from "./pages/SignInAndSignUp/SignInAndSignUp.components";
-// import CheckoutPage from "./pages/Checkout/Checkout.components";
 
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../src/redux/user/user.selector";
@@ -39,7 +34,6 @@ const App = ({ checkUserSession, currentUser }) => {
   //one time to add data to shop firestore
   // useEffect(() => {
   //   addCollectionAndDocuments("collections", collectionsArray.map(({title,items})=>({title,items})));
-
   // });
   const dispatch = useDispatch()
 
