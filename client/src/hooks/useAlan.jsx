@@ -88,7 +88,7 @@ const useAlan = () => {
         {
           category: "Shoes",
           imageUrl: "https://i.ibb.co/1RcFPk0/white-nike-high-tops.png",
-          name: " White Sneakers",
+          name: "White Sneakers",
           id: "6",
           colour: "White",
           price: "200",
@@ -952,6 +952,7 @@ const useAlan = () => {
       if (findItem(items, pname)) {
         
         console.log(findItem(items, pname));
+        console.log(pname)
         dispatch(addItem(findItem(items, pname)));
       }
     });
@@ -962,6 +963,7 @@ const useAlan = () => {
       return item.name.toLowerCase() === pname.toLowerCase();
     });
     return itemReturned;
+    // console.log(itemReturned)
   };
 
   //Remove item from cart
@@ -1026,6 +1028,24 @@ const useAlan = () => {
         //  console.log("In remove" + name);
           // console.log(itemCollection);
           ListItemToRemove(itemCollection, name);
+        }else if (commandData.command === "scroll-down") {
+          window.scrollBy({ top: 200, left: 0, behavior: "smooth" }); 
+        }else if (commandData.command === "scroll-up") {
+          window.scrollBy({ top: -200, left: 0, behavior: "smooth" }); 
+        }
+        else if (commandData.command === "scroll-top") {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          }); 
+        }
+        else if (commandData.command === "scroll-bottom") {
+          window.scrollTo({
+            top: 5000,
+            left: 0,
+            behavior: "smooth",
+          });
         }
 
 
