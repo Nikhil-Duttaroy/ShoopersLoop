@@ -30,7 +30,7 @@ const items = [
       <Helmet>
         <title>ShoopersLoop : Voice Controlled Ecommerce App</title>
         <meta name='description' content='ShoopersLoop : Voice Controlled Ecommerce App , Homepage for shoopersloop' />
-        <link rel='canonical' href='/' />
+        {/* <link rel='canonical' href='/' /> */}
       </Helmet>
       <HomePageContainer>
         <AliceCarousel
