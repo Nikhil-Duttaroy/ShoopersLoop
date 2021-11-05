@@ -1,16 +1,27 @@
-import React,{ useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import alanBtn from "@alan-ai/alan-sdk-web";
-import { addItem, removeItem, toggleCartHidden } from "./../redux/cart/cart.actions";
-import { fetchCollectionsStart } from './../redux/shop/shop.actions';
+import {
+  addItem,
+  removeItem,
+  toggleCartHidden,
+} from "./../redux/cart/cart.actions";
+import { fetchCollectionsStart } from "./../redux/shop/shop.actions";
 
 import {
   SelectCollectionForPreview,
   selectCollections,
   selectCollection,
 } from "../redux/shop/shop.selector";
+import { clearFilters, colorTermFilter } from "../redux/filters/filter.actions";
+import {
+  categoryTermFilter,
+  searchTermFilter,
+  rangeTermFilter1,
+  rangeTermFilter2,
+} from "./../redux/filters/filter.actions";
 
 const useAlan = () => {
   const dispatch = useDispatch();
@@ -950,9 +961,8 @@ const useAlan = () => {
   const ListItem = (itemCollection, pname) => {
     itemCollection.map(({ items }) => {
       if (findItem(items, pname)) {
-        
         console.log(findItem(items, pname));
-        console.log(pname)
+        console.log(pname);
         dispatch(addItem(findItem(items, pname)));
       }
     });
@@ -967,21 +977,21 @@ const useAlan = () => {
   };
 
   //Remove item from cart
- const ListItemToRemove = (itemCollection, pname) => {
-   itemCollection.map(({ items }) => {
-     if (findItemToRemove(items, pname)) {
-       console.log(findItemToRemove(items, pname));
-       dispatch(removeItem(findItemToRemove(items, pname)));
-     }
-   });
- };
+  const ListItemToRemove = (itemCollection, pname) => {
+    itemCollection.map(({ items }) => {
+      if (findItemToRemove(items, pname)) {
+        console.log(findItemToRemove(items, pname));
+        dispatch(removeItem(findItemToRemove(items, pname)));
+      }
+    });
+  };
 
- const findItemToRemove = (items, pname) => {
-   const itemReturned = items.find((item) => {
-     return item.name.toLowerCase() === pname.toLowerCase();
-   });
-   return itemReturned;
- };
+  const findItemToRemove = (items, pname) => {
+    const itemReturned = items.find((item) => {
+      return item.name.toLowerCase() === pname.toLowerCase();
+    });
+    return itemReturned;
+  };
 
 
   useEffect(() => {
@@ -1022,34 +1032,47 @@ const useAlan = () => {
           const { name } = commandData.payload;
           console.log(itemCollection);
           ListItem(itemCollection, name);
-        }
-        else if (commandData.command === "remove-item") {
+        } else if (commandData.command === "remove-item") {
           const { name } = commandData.payload;
-        //  console.log("In remove" + name);
+          //  console.log("In remove" + name);
           // console.log(itemCollection);
           ListItemToRemove(itemCollection, name);
-        }else if (commandData.command === "scroll-down") {
-          window.scrollBy({ top: 200, left: 0, behavior: "smooth" }); 
-        }else if (commandData.command === "scroll-up") {
-          window.scrollBy({ top: -200, left: 0, behavior: "smooth" }); 
-        }
-        else if (commandData.command === "scroll-top") {
+        } else if (commandData.command === "scroll-down") {
+          window.scrollBy({ top: 200, left: 0, behavior: "smooth" });
+        } else if (commandData.command === "scroll-up") {
+          window.scrollBy({ top: -200, left: 0, behavior: "smooth" });
+        } else if (commandData.command === "scroll-top") {
           window.scrollTo({
             top: 0,
             left: 0,
             behavior: "smooth",
-          }); 
-        }
-        else if (commandData.command === "scroll-bottom") {
+          });
+        } else if (commandData.command === "scroll-bottom") {
           window.scrollTo({
             top: 5000,
             left: 0,
             behavior: "smooth",
           });
+        } else if (commandData.command === "filter-by-color") {
+          const { color } = commandData.payload;
+          dispatch(colorTermFilter(color));
+        } else if (commandData.command === "filter-by-category") {
+          const { category } = commandData.payload;
+          dispatch(categoryTermFilter(category));
+        } 
+        // else if (commandData.command === "filter-by-description") {
+        //   const { description } = commandData.payload;
+        //   dispatch(searchTermFilter(description));
+        // } 
+        else if (commandData.command === "filter-above") {
+          const { higher } = commandData.payload;
+          dispatch(rangeTermFilter1(higher));
+        } else if (commandData.command === "filter-below") {
+          const { lower } = commandData.payload;
+          dispatch(rangeTermFilter2(lower));
+        } else if (commandData.command === "clear-filters") {
+          dispatch(clearFilters());
         }
-
-
-
       },
     });
     // return () => console.log("UMOUNT")
