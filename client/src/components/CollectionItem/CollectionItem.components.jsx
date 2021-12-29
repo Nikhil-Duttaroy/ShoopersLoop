@@ -14,6 +14,11 @@ import {
   NameContainer,
   PriceContainer
 } from './CollectionItem.styles';
+
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import useAlan from '../../hooks/useAlan.jsx';
 
 const CollectionItem = ({ item, addItem }) => {
@@ -21,6 +26,7 @@ const CollectionItem = ({ item, addItem }) => {
 
   const { name, price, imageUrl, description ,tags,category} = item;
 // useAlan(item)
+  const notify = () => toast.success(`${name} added to cart`);
   return (
     <CollectionItemContainer>
       <BackgroundImage className='image' imageUrl={imageUrl} />
@@ -29,9 +35,26 @@ const CollectionItem = ({ item, addItem }) => {
         <PriceContainer>{price}</PriceContainer>
         {/* <PriceContainer>{tags}</PriceContainer> */}
       </CollectionFooterContainer>
-      <AddButton onClick={() => addItem(item)} inverted>
+      <AddButton
+        onClick={() => {
+          addItem(item);
+          notify();
+        }}
+        inverted
+      >
         Add to cart
       </AddButton>
+      <ToastContainer
+        position='top-right'
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </CollectionItemContainer>
   );
 };
