@@ -23,7 +23,7 @@ import { Helmet } from "react-helmet-async";
 const CheckoutPage = ({ cartItems, total }) => (
   <>
     <Helmet>
-      <title>Contact Us</title>
+      <title>Checkout</title>
       <meta
         name='description'
         content='Contact Support team of  Shoopers Loop.'

@@ -48,7 +48,7 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>Checkout Page</title>
+        <title>Contact Us</title>
         <meta
           name='description'
           content='Checkout your items from cart, Shoopers Loop.'
