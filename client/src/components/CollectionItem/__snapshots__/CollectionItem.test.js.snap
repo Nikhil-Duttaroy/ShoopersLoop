@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollectionItem Component should render CollectionItem 1`] = `
+<styled.div>
+  <BackgroundImage
+    className="image"
+    imageUrl="www.test.com"
+  />
+  <CollectionFooterContainer>
+    <NameContainer>
+      Black Shirt
+    </NameContainer>
+    <PriceContainer>
+      50
+    </PriceContainer>
+  </CollectionFooterContainer>
+  <AddButton
+    inverted={true}
+    onClick={[Function]}
+  >
+    Add to cart
+  </AddButton>
+  <ToastContainer
+    autoClose={1500}
+    closeButton={[Function]}
+    closeOnClick={true}
+    draggable={true}
+    draggableDirection="x"
+    draggablePercent={80}
+    hideProgressBar={false}
+    newestOnTop={false}
+    pauseOnFocusLoss={true}
+    pauseOnHover={true}
+    position="top-right"
+    role="alert"
+    rtl={false}
+    theme="light"
+    transition={[Function]}
+  />
+</styled.div>
+`;

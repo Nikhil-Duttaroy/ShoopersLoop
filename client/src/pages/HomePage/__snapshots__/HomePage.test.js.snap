@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Homepage component 1`] = `
+<Fragment>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    prioritizeSeoTags={false}
+  >
+    <title>
+      ShoopersLoop : Voice Controlled Ecommerce App
+    </title>
+    <meta
+      content="ShoopersLoop : Voice Controlled Ecommerce App , Homepage for shoopersloop"
+      name="description"
+    />
+  </Helmet>
+  <styled.div>
+    <t
+      activeIndex={0}
+      animationDuration="5000"
+      animationEasingFunction="ease"
+      animationType="slide"
+      autoHeight={false}
+      autoPlay="true"
+      autoPlayControls={false}
+      autoPlayDirection="ltr"
+      autoPlayInterval={400}
+      autoPlayStrategy="default"
+      autoWidth={false}
+      controlsStrategy="default"
+      disableButtonsControls={false}
+      disableDotsControls="true"
+      disableSlideInfo={true}
+      infinite="true"
+      innerWidth={0}
+      items={
+        Array [
+          <img
+            alt="1"
+            onDragStart={[Function]}
+            src="https://i.ibb.co/wNWVMCJ/wardrobe-1.jpg"
+            style={
+              Object {
+                "height": "70vh",
+                "objectFit": "cover",
+                "width": "100%",
+              }
+            }
+          />,
+          <img
+            alt="2"
+            onDragStart={[Function]}
+            src="https://i.ibb.co/C9sw3F8/overview.jpg"
+            style={
+              Object {
+                "height": "70vh",
+                "objectFit": "cover",
+                "width": "100%",
+              }
+            }
+          />,
+        ]
+      }
+      keyboardNavigation={false}
+      mouseTracking={true}
+      name=""
+      onInitialized={[Function]}
+      onResized={[Function]}
+      onSlideChange={[Function]}
+      onSlideChanged={[Function]}
+      paddingLeft={0}
+      paddingRight={0}
+      ssrSilentMode={true}
+      swipeDelta={20}
+      swipeExtraPadding={200}
+      touchMoveDefaultEvents={true}
+      touchTracking={true}
+    />
+    <Connect(Directory) />
+  </styled.div>
+</Fragment>
+`;
