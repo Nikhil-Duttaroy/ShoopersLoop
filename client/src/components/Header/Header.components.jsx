@@ -31,7 +31,7 @@ import {
 } from "./Header.styles";
 import { signOutStart } from "./../../redux/user/user.actions";
 
-const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
+export const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
       {/* <Logo className='logo' /> */}
@@ -47,9 +47,9 @@ const Header = ({ currentUser, hidden, signOutStart, themeToggle, theme }) => (
       <OptionLink to='/shop'>SHOP</OptionLink>
       <OptionLink to='/contact'>CONTACT</OptionLink>
       {currentUser ? (
-        <OptionDiv onClick={signOutStart}> SIGN OUT</OptionDiv>
+        <OptionDiv onClick={signOutStart}>SIGN OUT</OptionDiv>
       ) : (
-        <OptionLink to='/signin'>SIGNIN</OptionLink>
+        <OptionLink to='/signin'>SIGN IN</OptionLink>
       )}
       <OptionLink onClick={() => themeToggle()}>
         {theme === "light" ? (

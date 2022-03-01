@@ -19,9 +19,9 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import useAlan from '../../hooks/useAlan.jsx';
+// import useAlan from '../../hooks/useAlan.jsx';
 
-const CollectionItem = ({ item, addItem }) => {
+export const CollectionItem = ({ item, addItem }) => {
   // useAlan();
 
   const { name, price, imageUrl, description ,tags,category} = item;

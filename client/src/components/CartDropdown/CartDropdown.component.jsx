@@ -17,9 +17,9 @@ import {
   CartItemsContainer,
 } from "./CartDropdown.styles";
 
-const CartDropdown = ({ cartItems, history, dispatch }) => {
+export const CartDropdown = ({ cartItems, history, dispatch }) => {
   const user=useSelector(state=>state.user.currentUser)
-  console.log(user);
+  // console.log(user);
   return (
     <CartDropdownContainer>
       <CartItemsContainer>
