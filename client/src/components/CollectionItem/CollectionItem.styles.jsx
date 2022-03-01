@@ -92,3 +92,9 @@ export const FormInput1 = styled(FormInput)`
     margin:0 auto;
   }
 `;
+
+AddButton.displayName = "AddButton";
+BackgroundImage.displayName = "BackgroundImage";
+CollectionFooterContainer.displayName = "CollectionFooterContainer";
+NameContainer.displayName = "NameContainer";
+PriceContainer.displayName = "PriceContainer";

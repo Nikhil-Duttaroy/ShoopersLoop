@@ -27,3 +27,5 @@ export const PreviewContainer = styled.div`
     grid-gap: 15px;
   }
   `;
+
+  TitleContainer.displayName = "TitleContainer";

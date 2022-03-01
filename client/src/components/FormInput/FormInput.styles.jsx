@@ -51,3 +51,7 @@ export const FormInputLabel = styled.label`
     ${shrinkLabelStyles}
   }
 `;
+
+
+FormInputContainer.displayName = "FormInputContainer";
+FormInputLabel.displayName = "FormInputLabel";
