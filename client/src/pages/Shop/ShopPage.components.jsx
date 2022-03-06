@@ -14,7 +14,7 @@ const CollectionsPageContainer = lazy(()=> import('./../Collection/Collection.co
 
 
 
-const ShopPage = ({ fetchCollectionsStart, match }) => {
+export const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
@@ -25,7 +25,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
         <title>ShoopersLoop: Shop</title>
         <meta name='description' content='Shoppage for shoopersloop , choose from your favorite clothing categories' />
         <link rel='canonical' href='/shop' />
-      </Helmet>
+    </Helmet>
     <div className='shop-page'>
       <Suspense fallback={<Spinner/>}>
       <Route

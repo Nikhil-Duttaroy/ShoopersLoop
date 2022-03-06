@@ -20,18 +20,18 @@ import StripeCheckoutButton from './../../components/StripeButton/StripeButton.c
 import { Helmet } from "react-helmet-async";
 
 
-const CheckoutPage = ({ cartItems, total }) => (
+export const CheckoutPage = ({ cartItems, total }) => (
   <>
     <Helmet>
       <title>Checkout</title>
       <meta
         name='description'
-        content='Contact Support team of  Shoopers Loop.'
+        content='Contact Support team of  Shoppers Loop.'
       />
       <link rel='canonical' href='/contact' />
     </Helmet>
     <CheckoutPageContainer>
-      <h1 style={{display:"none"}}>Checkout Page for ShoopersLoop</h1>
+      <h1 style={{display:"none"}}>Checkout Page for ShoppersLoop</h1>
       <CheckoutHeaderContainer>
         <HeaderBlockContainer>
           <span>Product</span>
