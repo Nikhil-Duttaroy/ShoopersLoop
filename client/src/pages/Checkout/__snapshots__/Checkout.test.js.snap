@@ -11,7 +11,7 @@ exports[`should render CheckoutPage component 1`] = `
       Checkout
     </title>
     <meta
-      content="Contact Support team of  Shoopers Loop."
+      content="Contact Support team of  Shoppers Loop."
       name="description"
     />
     <link
@@ -27,7 +27,7 @@ exports[`should render CheckoutPage component 1`] = `
         }
       }
     >
-      Checkout Page for ShoopersLoop
+      Checkout Page for ShoppersLoop
     </h1>
     <styled.div>
       <styled.div>
