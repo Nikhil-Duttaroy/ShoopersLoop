@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShopPage should render ShopPage component 1`] = `
+<Fragment>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    prioritizeSeoTags={false}
+  >
+    <title>
+      ShoopersLoop: Shop
+    </title>
+    <meta
+      content="Shoppage for shoopersloop , choose from your favorite clothing categories"
+      name="description"
+    />
+    <link
+      href="/shop"
+      rel="canonical"
+    />
+  </Helmet>
+  <div
+    className="shop-page"
+  >
+    <Suspense
+      fallback={<Spinner />}
+    >
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
+          }
+        }
+        exact={true}
+        path="undefined"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.lazy),
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
+          }
+        }
+        exact={true}
+        path="undefined/:collectionId"
+      />
+    </Suspense>
+  </div>
+</Fragment>
+`;
