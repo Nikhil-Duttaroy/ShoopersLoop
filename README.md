@@ -23,10 +23,6 @@
 <img src="https://i.ibb.co/5Y9xw2h/2.jpg" alt="2" border="0">
 - Sign Up / Sign In by using your email and password or gmail account
 
->> dummy user 
->>- email : test@gmail.com  
->>- password : 1234567  
-
 <a href="https://ibb.co/0sKVRDH"><img src="https://i.ibb.co/xjrS0Dv/3.jpg" alt="3" border="0"></a>
 
 - After you have signed in you will be redirected to the home screen from where you can choose from Hats , Jackets , Sneaker , Womens , Mens Sections.
@@ -72,7 +68,7 @@
 - Adding a product description modal for each product
 
 
-####Voice Commands to use
+#### Voice Commands to use
 - Show "Category"
 - Add "Name of Item" to cart
 - Open Cart / Close Cart
