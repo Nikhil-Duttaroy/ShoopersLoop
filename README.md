@@ -6,7 +6,7 @@
 - Firebase
 - Styled Components
 - Stripe(with nodejs and express)
-- Heroku
+- Heroku/Render
 - Alan AI
 
 #### Features
@@ -18,7 +18,7 @@
 
 
 #### How to Navigate The Project 
--  Go To [ShoppersLoop :Voice Controlled E-commerce Web App](https://shoopersloop.herokuapp.com/ "ShoppersLoop :Voice Controlled E-commerce Web App")
+-  Go To [ShoppersLoop :Voice Controlled E-commerce Web App](https://shoppersloop.onrender.com/ "ShoppersLoop :Voice Controlled E-commerce Web App")
 <img src="https://i.ibb.co/wBPzS0w/1.jpg" alt="1" border="0">
 <img src="https://i.ibb.co/5Y9xw2h/2.jpg" alt="2" border="0">
 - Sign Up / Sign In by using your email and password or gmail account
